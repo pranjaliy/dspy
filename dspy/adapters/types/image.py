@@ -185,9 +185,9 @@ def _encode_image_from_file(file_path: str) -> str:
     return f"data:{mime_type};base64,{encoded_data}"
 
 
-def _encode_image_from_url(image_url: str) -> str:
+def _encode_image_from_url(image_url: str, verify=True, timeout=None) -> str:
     """Encode a file from a URL to a base64 data URI."""
-    response = requests.get(image_url)
+    response = requests.get(image_url,verify)
     response.raise_for_status()
     content_type = response.headers.get("Content-Type", "")
 
